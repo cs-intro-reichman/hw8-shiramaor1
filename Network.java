@@ -80,7 +80,7 @@ public class Network {
             return false;
         }
 
-        return getUser(name1).addFollowee(name2);  
+        return user1.addFollowee(name2);  
     }
     
     /** For the user with the given name, recommends another user to follow. The recommended user is
