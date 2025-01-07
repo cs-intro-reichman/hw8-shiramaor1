@@ -25,12 +25,23 @@ public class Network {
     public int getUserCount() {
         return this.userCount;
     }
+
+    public static String formatName(String name){
+        String updateName = "";
+        if (name.charAt(0) >= 'a' && name.charAt(0) <= 'z'){
+            updateName += (char) (name.charAt(0) - 32);
+            updateName += name.substring(1);
+            return updateName;
+        }
+        return name;
+    }
+
     /** Finds in this network, and returns, the user that has the given name.
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
         for (int i = 0; i < userCount; i++){
-            if (users[i].getName().equals(name)){
+            if (users[i].getName().equals(formatName(name))){
                 return users[i];
             }
         }
@@ -64,7 +75,7 @@ public class Network {
         if (getUser(name1).equals(getUser(name2))){
             return false;
         }
-        
+
         return getUser(name1).addFollowee(name2);  
     }
     
