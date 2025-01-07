@@ -41,11 +41,21 @@
         return fCount;
     }
 
+    public static String formatName(String name){
+        String updateName = "";
+        if (name.charAt(0) >= 'a' && name.charAt(0) <= 'z'){
+            updateName += (char) (name.charAt(0) - 32);
+            updateName += name.substring(1);
+            return updateName;
+        }
+        return name;
+    }
+
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
         for(int i = 0; i < fCount; i++) {
-            if (follows[i].equals(name)){
-                return true;
+            if (follows[i].equals(formatName(name))){
+               return true;
             } 
         }
         return false;
@@ -56,7 +66,7 @@
         if(fCount >= maxfCount){
             return false;
         }
-        if (follows(name)) {
+        if (follows(formatName(name))) {
             return false;
         }
         follows[fCount] = name;

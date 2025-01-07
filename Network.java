@@ -68,7 +68,7 @@ public class Network {
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
-        User mostRecommendedUserToFollow = new User ("dummy");
+        User mostRecommendedUserToFollow = new User ("null");
         for (int i = 0; i < userCount; i++) {
             if(users[i].getName().equals(name)){
                 continue;
@@ -85,7 +85,7 @@ public class Network {
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {
-        User mostPopularUser = new User ("dummy");
+        User mostPopularUser = new User ("null");
         for (int i = 0; i < userCount; i++) {
             if (followeeCount(users[i].getName()) > followeeCount(mostPopularUser.getName())){
                 mostPopularUser = users[i];
