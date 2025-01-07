@@ -21,6 +21,15 @@ public class Network {
         users[2] = new User("Baz");
         userCount = 3;
     }
+    public static String formatName(String name){
+        String updateName = "";
+        if (name.charAt(0) >= 'a' && name.charAt(0) <= 'z'){
+            updateName += (char) (name.charAt(0) - 32);
+            updateName += name.substring(1);
+            return updateName;
+        }
+        return name;
+    }
 
     public int getUserCount() {
         return this.userCount;
@@ -48,7 +57,7 @@ public class Network {
         if (getUser(name) != null) {
             return false;
         }
-        users[userCount] = new User(name);
+        users[userCount] = new User(formatName(name));
         userCount++;
 
         return true;
@@ -58,11 +67,11 @@ public class Network {
      *  If any of the two names is not a user in this network,
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
-        if (getUser(name1) == null || getUser(name2) == null) {
+        if (getUser(formatName(name1)) == null || getUser(formatName(name2)) == null) {
             return false;
         }
 
-        return getUser(name1).addFollowee(name2);  
+        return getUser(formatName(name1)).addFollowee(formatName(name2));  
     }
     
     /** For the user with the given name, recommends another user to follow. The recommended user is
